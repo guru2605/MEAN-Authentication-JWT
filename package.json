@@ -1,0 +1,24 @@
+{
+  "name": "authentication-jwt",
+  "version": "1.0.0",
+  "description": "a JWT based authentication app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "mysql": "^2.16.0",
+    "node-restful": "^0.2.6",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Gurudatt Shanbhag",
+  "license": "ISC"
+}
