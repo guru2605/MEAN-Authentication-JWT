@@ -1,47 +1,48 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Router } from '@angular/router';
-import  { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  authToken:any;
-  user:any;
+  authToken: any;
+  user: any;
 
 
-  constructor(private http:Http, private route:Router) { }
-  
+  constructor(private http: Http, private route: Router) { }
+
   registerService(user) {
-    let headers =  new Headers();
-    headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/users/register',user,{headers:headers})
-    .pipe(map(res => res.json()));
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(environment.url + '/users/register', user, { headers: headers })
+      .pipe(map(res => res.json()));
   }
 
   // Login Service
-  loginService(credentials) {    
-    let headers =  new Headers();
-    headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/users/authenticate',credentials,{headers:headers})
-    .pipe(map(res => res.json()));
-  } 
+  loginService(credentials) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(environment.url + '/users/authenticate', credentials, { headers: headers })
+      .pipe(map(res => res.json()));
+  }
 
-  storeUserData(token,user) {
-    localStorage.setItem('id_token',token);
-    localStorage.setItem('user',JSON.stringify(user));
+  storeUserData(token, user) {
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
   }
 
-  getProfile(){
-    let headers =  new Headers();
-    headers.append('Content-Type','application/json');
+  getProfile() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     this.loadToken();
-    headers.append('Authorization',this.authToken);
-    return this.http.get('http://localhost:3000/users/profile',{headers:headers})
-    .pipe(map(res => res.json()));
+    headers.append('Authorization', this.authToken);
+    return this.http.get(environment.url + '/users/profile', { headers: headers })
+      .pipe(map(res => res.json()));
   }
 
 
@@ -50,7 +51,7 @@ export class UserService {
     this.authToken = token;
   }
 
-  logout(){
+  logout() {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
