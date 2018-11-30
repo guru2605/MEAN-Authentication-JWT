@@ -41,10 +41,10 @@ app.use('/users',users);
 app.use('/posts',posts);
 
 
-//Index Route
-app.get('/',(req,res) => {
-    res.send('INDEX endpoint');
-});
+// //Index Route
+// app.get('/',(req,res) => {
+//     res.send('INDEX endpoint');
+// });
 
 app.listen(port, () => {
     console.log('Server started on port :' + port);
