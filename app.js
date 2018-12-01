@@ -21,7 +21,7 @@ mongoose.connection.on('error',(err) => {
 const app = express();
 
 const users = require('./routes/users');
-const posts = require('./routes/posts');
+const news = require('./routes/news');
 
 const port = 3000;
 
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use('/users',users);
 
-app.use('/posts',posts);
+app.use('/news',news);
 
 
 // //Index Route
